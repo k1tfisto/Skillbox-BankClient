@@ -1,0 +1,60 @@
+﻿<Window x:Class="Practice13.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Practice13"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="659" Width="1206" MaxWidth="1206" MaxHeight="659" MinWidth="1206" MinHeight="659" >
+    <Grid>
+        <DataGrid x:Name="mngDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="304" VerticalAlignment="Top" Width="707" Margin="10,63,0,0" 
+                  Loaded="MngDataGrid_Loaded" SelectionChanged="MngDataGrid_SelectionChanged" RowEditEnding="MngDataGrid_RowEditEnding">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path = LastName }" Header="LastName"  Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path = FirstName }" Header="FirstName"  Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path = MiddleName }" Header="MiddleName"  Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path = NumberPhone }" Header="NumberPhone"  Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path = PassportEmpl }" Header="Passport"  Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="Save" Content="Сохранить изменения" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Margin="10,10,0,0" Height="35" Click="Save_Click"/>
+        <Button x:Name="mngAdd" Content="Добавить клиента" HorizontalAlignment="Left" VerticalAlignment="Top" Width="134" Margin="175,10,0,0" Height="35" Click="MngAdd_Click"/>
+        <Button x:Name="mngDel" Content="Удалить клиента" HorizontalAlignment="Left" VerticalAlignment="Top" Width="134" Margin="314,10,0,0" Height="35" Click="MngDel_Click"/>
+        <ListView x:Name="accountsManagement" HorizontalAlignment="Left" Height="242" VerticalAlignment="Top" Width="444" Margin="738,10,0,0" Grid.Column="1" 
+                  Loaded="AccountsManagement_Loaded" SelectionChanged="AccountsManagement_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Номер Счета" DisplayMemberBinding="{Binding AccountNumber}"/>
+                    <GridViewColumn Header="Депозит" DisplayMemberBinding="{Binding Deposit}"/>
+                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding AccountAmount}"/>
+                    <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding AccountStatus}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="openAcc" Content="Открыть счет" HorizontalAlignment="Left" Margin="738,263,0,0" VerticalAlignment="Top" Width="200" Click="OpenAcc_Click"/>
+        <Button x:Name="closeAcc" Content="Закрыть счет" HorizontalAlignment="Left" Margin="970,263,0,0" VerticalAlignment="Top" Width="212" Click="CloseAcc_Click"/>
+        <TextBox x:Name="valAcc" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="Введите сумму...." VerticalAlignment="Top" Width="444" Margin="738,342,0,0" 
+                 GotFocus="ValAcc_GotFocus" LostFocus="ValAcc_LostFocus" TextChanged="ValAcc_TextChanged"/>
+        <Button x:Name="addAmount" Content="Зачислить на счет" HorizontalAlignment="Left" Margin="738,382,0,0" VerticalAlignment="Top" Width="200" Click="AddAmount_Click" />
+        <Button x:Name="delAmount" Content="Снять со счета" HorizontalAlignment="Left" Margin="970,382,0,0" VerticalAlignment="Top" Width="212" Click="DelAmount_Click"/>
+        <ComboBox x:Name="fromAmount" HorizontalAlignment="Left" VerticalAlignment="Top" Width="444" Margin="738,423,0,0" 
+                  Loaded="FromAmount_Loaded">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding AccountNumber}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox x:Name="toAmount" HorizontalAlignment="Left" VerticalAlignment="Top" Width="444" Margin="738,472,0,0" 
+                  Loaded="ToAmount_Loaded">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding AccountNumber}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button x:Name="moneyTransfer" Content="Перевести со счета на счет" HorizontalAlignment="Left" Margin="738,520,0,0" VerticalAlignment="Top" Width="444" Click="MoneyTransfer_Click" />
+        <Button x:Name="deposit" Content="Открыть депозит" HorizontalAlignment="Left" Margin="738,305,0,0" VerticalAlignment="Top" Width="444" Click="Deposit_Click" />
+        <ListBox x:Name="journalBox" HorizontalAlignment="Left" Height="158" Margin="10,382,0,0" VerticalAlignment="Top" Width="707"/>
+    </Grid>
+</Window>
